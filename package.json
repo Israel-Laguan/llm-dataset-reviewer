@@ -1,0 +1,79 @@
+{
+  "name": "llm-dataset-reviewer",
+  "displayName": "LLM Dataset Reviewer",
+  "description": "Review and edit JSON datasets row by row, optimized for LLM training data",
+  "version": "0.1.0",
+  "publisher": "israel-laguan",
+  "author": {
+    "name": "Israel Laguan",
+    "email": "israellaguan@gmail.com"
+  },
+  "engines": {
+    "vscode": "^1.74.0",
+    "node": ">=16.0.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:json"
+  ],
+  "main": "./dist/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "node ./esbuild.js",
+    "package": "rimraf dist && npm run compile",
+    "watch": "node ./esbuild.js --watch",
+    "lint": "biome check .",
+    "format": "biome format . --write",
+    "test": "node ./src/test/runTest.js"
+  },
+  "contributes": {
+    "configuration": {
+      "title": "LLM Dataset Reviewer",
+      "properties": {
+        "llmDatasetReviewer.maxFileSize": {
+          "type": "number",
+          "default": 10485760,
+          "description": "Maximum file size in bytes (10MB)"
+        },
+        "llmDatasetReviewer.features": {
+          "type": "object",
+          "default": {
+            "basicNavigation": true,
+            "statusTracking": true
+          },
+          "description": "Feature flags configuration"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "llm-dataset-reviewer.startReview",
+        "title": "Start Dataset Review"
+      },
+      {
+        "command": "llm-dataset-reviewer.nextRow",
+        "title": "Move to Next Dataset Row"
+      },
+      {
+        "command": "llm-dataset-reviewer.prevRow",
+        "title": "Move to Previous Dataset Row"
+      }
+    ]
+  },
+  "keywords": [],
+  "license": "ISC",
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^20.17.6",
+    "@types/vscode": "^1.95.0",
+    "@typescript-eslint/eslint-plugin": "^8.12.2",
+    "@typescript-eslint/parser": "^8.12.2",
+    "esbuild": "^0.24.0",
+    "eslint": "^9.14.0",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.6.3"
+  }
+}
