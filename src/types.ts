@@ -1,4 +1,4 @@
-import { Config } from "./utils/config";
+import type { Config } from "./utils/config";
 
 export interface ValidationResult {
   valid: boolean;
@@ -15,6 +15,7 @@ export interface ReviewState {
   currentIndex: number;
   totalRows: number;
   isReviewing: boolean;
+  rows?: unknown[];
 }
 
 export interface NavigationResult {

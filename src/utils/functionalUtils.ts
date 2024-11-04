@@ -1,4 +1,4 @@
-import { Result } from "../types";
+import type { Result } from "../types";
 
 export const pipe = <T>(...fns: Array<(arg: T) => T>) =>
   (value: T): T =>
