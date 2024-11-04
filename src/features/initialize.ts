@@ -67,11 +67,7 @@ const initializeFeatures = async (
 
     // Initialize status tracking if enabled
     if (config.features.statusTracking.enabled) {
-      await initializeStatusTracking(context, editor, {
-        currentIndex: 0,
-        totalRows: fileHandlingResult.value?.totalRows,
-        isReviewing: true,
-      });
+      await initializeStatusTracking(context, editor, fileHandlingResult.value);
       window.showInformationMessage('Status tracking initialized');
     }
 

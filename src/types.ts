@@ -7,8 +7,8 @@ export interface ValidationResult {
 }
 
 export interface Position {
-  line: number;
-  character: number;
+  startLine: number;
+  endLine: number;
 }
 
 export interface ReviewState {
@@ -16,6 +16,7 @@ export interface ReviewState {
   totalRows: number;
   isReviewing: boolean;
   rows?: unknown[];
+  positions: Position[];
 }
 
 export interface NavigationResult {

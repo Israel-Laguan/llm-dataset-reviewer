@@ -13,6 +13,6 @@ export const highlightCurrentRow = (
   position: Position,
   decorationType: TextEditorDecorationType
 ): void => {
-  const range = new Range(position.line, 0, position.line, Number.MAX_VALUE);
+  const range = new Range(position.startLine, 0, position.endLine, Number.MAX_VALUE);
   editor.setDecorations(decorationType, [range]);
 };

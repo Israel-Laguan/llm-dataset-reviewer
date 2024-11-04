@@ -1,22 +1,30 @@
-import type { Result, DatasetRow } from '../../types';
+import type { Result, DatasetRow, Position } from '../../types';
 
 interface RowManagerState {
   currentIndex: number;
   rows: unknown[];
   totalRows: number;
+  positions: Position[];
 }
 
-export const createRowManager = (initialRows: unknown[], totalRows: number): RowManagerState => ({
+export const createRowManager = (
+  initialRows: unknown[],
+  totalRows: number,
+  positions: Position[]
+): RowManagerState => ({
   currentIndex: 0,
   rows: initialRows,
-  totalRows
+  totalRows,
+  positions,
 });
 
-export const getCurrentRow = (state: RowManagerState): Result<DatasetRow> => {
+export const getCurrentRow = (
+  state: RowManagerState,
+): Result<DatasetRow> => {
   if (state.currentIndex >= state.totalRows) {
     return {
       ok: false,
-      error: new Error('Current index out of bounds')
+      error: new Error('Current index out of bounds'),
     };
   }
 
@@ -26,10 +34,10 @@ export const getCurrentRow = (state: RowManagerState): Result<DatasetRow> => {
       content: state.rows[state.currentIndex],
       index: state.currentIndex,
       position: {
-        line: state.currentIndex,
-        character: 0
-      }
-    }
+        startLine: state.positions[state.currentIndex].startLine,
+        endLine: state.positions[state.currentIndex].endLine,
+      },
+    },
   };
 };
 
@@ -40,7 +48,7 @@ export const navigateToRow = (
   if (targetIndex < 0 || targetIndex >= state.totalRows) {
     return {
       ok: false,
-      error: new Error('Target index out of bounds')
+      error: new Error('Target index out of bounds'),
     };
   }
 
@@ -48,13 +56,13 @@ export const navigateToRow = (
     ok: true,
     value: {
       ...state,
-      currentIndex: targetIndex
-    }
+      currentIndex: targetIndex,
+    },
   };
 };
 
-export const nextRow = (state: RowManagerState): Result<RowManagerState> => 
+export const nextRow = (state: RowManagerState): Result<RowManagerState> =>
   navigateToRow(state, state.currentIndex + 1);
 
-export const previousRow = (state: RowManagerState): Result<RowManagerState> => 
+export const previousRow = (state: RowManagerState): Result<RowManagerState> =>
   navigateToRow(state, state.currentIndex - 1);

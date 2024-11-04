@@ -13,5 +13,5 @@ export const updateStatusBar = (
 ): void => {
   statusBar.text = `$(list-ordered) Row ${state.currentIndex + 1}/${state.totalRows}`;
   statusBar.tooltip = 'Click to jump to row';
-  statusBar.command = 'dataset-review.jumpToRow';
+  statusBar.command = 'llm-dataset-reviewer.jumpToRow';
 };

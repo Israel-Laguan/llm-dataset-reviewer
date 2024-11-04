@@ -8,7 +8,7 @@ export const initializeFileHandling = async (
   editor: TextEditor
 ): Promise<Result<ReviewState>> => {
   // Parse document content
-  const parseResult = parseDataset(editor.document.getText());
+  const parseResult = parseDataset(editor.document);
   if (!parseResult.ok) {
     return parseResult;
   }
@@ -16,7 +16,8 @@ export const initializeFileHandling = async (
   // Initialize row manager
   const rowManager = createRowManager(
     parseResult.value.rows,
-    parseResult.value.totalRows
+    parseResult.value.totalRows,
+    parseResult.value.positions
   );
   const currentRowResult = getCurrentRow(rowManager);
   if (!currentRowResult.ok) {
@@ -38,6 +39,7 @@ export const initializeFileHandling = async (
       rows: parseResult.value.rows,
       totalRows: parseResult.value.totalRows,
       isReviewing: true,
+      positions: parseResult.value.positions,
     },
   };
 };
