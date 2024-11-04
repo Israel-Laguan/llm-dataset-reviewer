@@ -1,4 +1,4 @@
-import { Uri, workspace } from 'vscode';
+import { type Uri, workspace } from 'vscode';
 import type { ValidationResult } from '../types';
 import { getConfig } from './config';
 
@@ -17,7 +17,7 @@ export const validateFile = async (uri: Uri): Promise<ValidationResult> => {
   if (stat.size > config.maxFileSize / 2) {
     return {
       valid: true,
-      warning: `Large file detected. Some features may be slower.`,
+      warning: 'Large file detected. Some features may be slower.',
     };
   }
 

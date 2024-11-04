@@ -2,7 +2,7 @@
   "name": "llm-dataset-reviewer",
   "displayName": "LLM Dataset Reviewer",
   "description": "Review and edit JSON datasets row by row, optimized for LLM training data",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "israel-laguan",
   "author": {
     "name": "Israel Laguan",
@@ -40,8 +40,14 @@
         "llmDatasetReviewer.features": {
           "type": "object",
           "default": {
-            "basicNavigation": true,
-            "statusTracking": true
+            "basicNavigation": {
+              "enabled": true,
+              "dependencies": []
+            },
+            "statusTracking": {
+              "enabled": true,
+              "dependencies": []
+            }
           },
           "description": "Feature flags configuration"
         }
@@ -59,21 +65,71 @@
       {
         "command": "llm-dataset-reviewer.prevRow",
         "title": "Move to Previous Dataset Row"
+      },
+      {
+        "command": "llm-dataset-reviewer.nextRow",
+        "title": "Dataset Review: Next Row"
+      },
+      {
+        "command": "llm-dataset-reviewer.previousRow",
+        "title": "Dataset Review: Previous Row"
+      },
+      {
+        "command": "llm-dataset-reviewer.jumpToRow",
+        "title": "Dataset Review: Jump to Row"
+      },
+      {
+        "command": "llm-dataset-reviewer.markReviewed",
+        "title": "Dataset Review: Mark Row as Reviewed"
+      },
+      {
+        "command": "llm-dataset-reviewer.markFlagged",
+        "title": "Dataset Review: Flag Row"
+      },
+      {
+        "command": "llm-dataset-reviewer.addNote",
+        "title": "Dataset Review: Add Note to Row"
+      },
+      {
+        "command": "llm-dataset-reviewer.clearStatus",
+        "title": "Dataset Review: Clear Row Status"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "llm-dataset-reviewer.nextRow",
+        "key": "alt+down",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "llm-dataset-reviewer.previousRow",
+        "key": "alt+up",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "llm-dataset-reviewer.markReviewed",
+        "key": "alt+r",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "llm-dataset-reviewer.markFlagged",
+        "key": "alt+f",
+        "when": "editorTextFocus"
       }
     ]
   },
   "keywords": [],
   "license": "ISC",
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@types/node": "^20.17.6",
-    "@types/vscode": "^1.95.0",
-    "@typescript-eslint/eslint-plugin": "^8.12.2",
-    "@typescript-eslint/parser": "^8.12.2",
-    "esbuild": "^0.24.0",
-    "eslint": "^9.14.0",
-    "prettier": "^3.3.3",
-    "rimraf": "^6.0.1",
-    "typescript": "^5.6.3"
+    "@biomejs/biome": "~1.9.4",
+    "@types/node": "~20.17.6",
+    "@types/vscode": "~1.95.0",
+    "@typescript-eslint/eslint-plugin": "~8.12.2",
+    "@typescript-eslint/parser": "~8.12.2",
+    "esbuild": "~0.24.0",
+    "eslint": "~9.14.0",
+    "prettier": "~3.3.3",
+    "rimraf": "~6.0.1",
+    "typescript": "~5.6.3"
   }
 }

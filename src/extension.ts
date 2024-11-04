@@ -1,4 +1,4 @@
-import { ExtensionContext, commands, window } from 'vscode';
+import { type ExtensionContext, commands, window } from 'vscode';
 import { getConfig } from './utils/config';
 import { validateFile } from './utils/fileValidator';
 import { initializeFeatures } from './features/initialize';
@@ -29,7 +29,7 @@ export const activate = async (context: ExtensionContext) => {
       }
 
       // Initialize review session
-      await initializeFeatures(editor, config);
+      await initializeFeatures(context, editor, config);
     }),
   ];
 
