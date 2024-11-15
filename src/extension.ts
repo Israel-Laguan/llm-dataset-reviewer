@@ -1,4 +1,4 @@
-import { ExtensionContext, commands, window } from 'vscode';
+import { type ExtensionContext, commands, window } from 'vscode';
 import { getConfig } from './utils/config';
 import { validateFile } from './utils/fileValidator';
 import { initializeFeatures } from './features/initialize';
@@ -12,7 +12,7 @@ export const activate = async (context: ExtensionContext) => {
     commands.registerCommand('llm-dataset-reviewer.startReview', async () => {
       const editor = window.activeTextEditor;
       if (!editor) {
-        window.showErrorMessage('No active editor found');
+        window.showErrorMessage(MESSAGES.errors.NO_EDITOR);
         return;
       }
 
@@ -29,7 +29,7 @@ export const activate = async (context: ExtensionContext) => {
       }
 
       // Initialize review session
-      await initializeFeatures(editor, config);
+      await initializeFeatures(context, editor, config);
     }),
   ];
 

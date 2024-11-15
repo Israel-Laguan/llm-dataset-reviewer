@@ -1,5 +1,5 @@
 import { workspace } from 'vscode';
-import { FeatureFlag } from '../types';
+import type { FeatureFlag } from '../types';
 
 export interface FeatureFlags {
   basicNavigation: FeatureFlag;
@@ -19,13 +19,13 @@ export const getConfig = (): Config => {
     features: config.get('features') ?? {
       basicNavigation: {
         enabled: true,
-        name: 'Basic Navigation',
+        name: 'basicNavigation',
         description: 'Enables basic navigation features',
         dependencies: [],
       },
       statusTracking: {
         enabled: true,
-        name: 'Status Tracking',
+        name: 'statusTracking',
         description: 'Enables status tracking features',
         dependencies: [],
       },

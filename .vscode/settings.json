@@ -1,3 +1,13 @@
 {
-  "CodeGPT.apiKey": "CodeGPT Plus Beta"
+  "llmDatasetReviewer.maxFileSize": 5485760,
+  "llmDatasetReviewer.features": {
+    "basicNavigation": {
+      "enabled": true,
+      "dependencies": []
+    },
+    "statusTracking": {
+      "enabled": true,
+      "dependencies": []
+    }
+  }
 }
