@@ -12,7 +12,7 @@ export const activate = async (context: ExtensionContext) => {
     commands.registerCommand('llm-dataset-reviewer.startReview', async () => {
       const editor = window.activeTextEditor;
       if (!editor) {
-        window.showErrorMessage('No active editor found');
+        window.showErrorMessage(MESSAGES.errors.NO_EDITOR);
         return;
       }
 

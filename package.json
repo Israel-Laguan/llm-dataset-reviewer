@@ -46,7 +46,7 @@
             },
             "statusTracking": {
               "enabled": true,
-              "dependencies": []
+              "dependencies": ["basicNavigation"]
             }
           },
           "description": "Feature flags configuration"
@@ -61,10 +61,6 @@
       {
         "command": "llm-dataset-reviewer.nextRow",
         "title": "Move to Next Dataset Row"
-      },
-      {
-        "command": "llm-dataset-reviewer.prevRow",
-        "title": "Move to Previous Dataset Row"
       },
       {
         "command": "llm-dataset-reviewer.nextRow",

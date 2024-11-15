@@ -20,10 +20,11 @@ export const registerNavigationCommands = (
   onStateChange: (newState: ReviewState) => void
 ) => [
   commands.registerCommand(NAVIGATION_COMMANDS.nextRow, () => {
-    const result = nextRow({ 
+    const result = nextRow({
       currentIndex: state.currentIndex,
       totalRows: state.totalRows,
-      rows: [] // We'll improve this later with proper state management
+      rows: [],
+      positions: []
     });
     
     if (result.ok) {
@@ -40,7 +41,8 @@ export const registerNavigationCommands = (
     const result = previousRow({
       currentIndex: state.currentIndex,
       totalRows: state.totalRows,
-      rows: []
+      rows: [],
+      positions: []
     });
     
     if (result.ok) {

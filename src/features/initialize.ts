@@ -1,9 +1,10 @@
-import { window, TextEditor, ExtensionContext } from 'vscode';
+import { window, type TextEditor, type ExtensionContext } from 'vscode';
 import type { Result } from '../types';
-import { FeatureFlags, getConfig } from '../utils/config';
+import { type FeatureFlags, getConfig } from '../utils/config';
 import { initializeFileHandling } from './fileHandling';
 import { initializeNavigation } from './navigation';
 import { initializeStatusTracking } from './statusTracking';
+import { MESSAGES } from '../constants/messages';
 
 const validateFeatureDependencies = (features: FeatureFlags): Result<void> => {
   const enabledFeatures = Object.entries(features)
@@ -71,7 +72,7 @@ const initializeFeatures = async (
       window.showInformationMessage('Status tracking initialized');
     }
 
-    window.showInformationMessage('LLM Dataset Reviewer initialized');
+    window.showInformationMessage(MESSAGES.info.REVIEW_STARTED);
 
     return { ok: true, value: undefined };
   } catch (error) {
@@ -80,7 +81,7 @@ const initializeFeatures = async (
       error:
         error instanceof Error
           ? error
-          : new Error('Feature initialization failed'),
+          : new Error(MESSAGES.errors.INITIALIZATION_FAILED),
     };
   }
 };
